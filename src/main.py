@@ -8,7 +8,7 @@ def main():
     clear_screen()
     sleep(.7)
 
-    print("Blood on the Clocktower Grimoire (v0.1.1)\n")
+    print("Blood on the Clocktower Grimoire (v0.0.1)\n")
     sleep(1)
 
     print("Welcome to the Grimoire, dear Storyteller\u2026")
