@@ -4,9 +4,8 @@ import random
 class Party:
     def __init__ (self, chars, names):
         self.script = Script(chars)
-        self.players = self.IP = []
-        self.tfNum = self.osNum = self.mnNum = 0
-        self.dmNum = 1
+        self.players, self.IP = [], []
+        self.tfNum, self.osNum, self.mnNum, self.dmNum = 0, 0, 0, 1
 
         pop = len(names)
         if pop >= 13:
@@ -26,8 +25,8 @@ class Party:
         for i in range(pop):
             self.osNum += 1
 
-        self.rollChars
-        for i in range(pop):
+        self.rollChars()
+        for i in range(len(names)):
             self.players.append(Player(names[i], self.IP[i]))
 
     def rollChars(self):
@@ -60,6 +59,23 @@ class Party:
 
         self.IP.append(self.script.dm[dmInd])
         random.shuffle(self.IP)
+
+    def listPlayers(self):
+        for i in range(len(self.players)):
+            print("\t" + str(i + 1), "-", str(self.players[i]))
+
+    def listPlayersSimple(self):
+        for i in range(len(self.players)):
+            print("\t" + str(i + 1), "-", self.players[i].getName())
     
     def getPlayer(self, i):
         return self.players[i].copy()
+    
+    def showSimpleScript(self):
+        self.script.printChars()
+
+    def showScript(self):
+        self.script.printFull()
+
+    def showDefIP(self):
+        print(f"{self.tfNum} Townsfolk, {self.osNum} Outsider(s), {self.mnNum} Minion(s), and {self.dmNum} Demon")

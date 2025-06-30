@@ -5,10 +5,13 @@ class Player:
         self.reminders = []
 
     def __str__(self):
-        return f"{self.name} ({self.c})"
+        return f"{self.name} ({self.c.printSimple()})"
     
     def printSimple(self):
         return f"{self.name}"
+    
+    def getName(self):
+        return self.name
 
     def changeName(self, name):
         self.name = name
@@ -47,8 +50,9 @@ class Character:
 
 class Script:
     def __init__(self, chars):
-        self.tf = self.os = self.mn = self.dm = [];
-        for c in chars:
+        self.tf, self.os, self.mn, self.dm = [], [], [], []
+        for char in chars:
+            c = Character(char)
             if c.team == "townsfolk":
                 self.tf.append(c)
             elif c.team == "outsider":
@@ -57,3 +61,49 @@ class Script:
                 self.mn.append(c)
             else:
                 self.dm.append(c)
+
+    def printChars(self):
+        print("\nTownsfolk:")
+        for c in self.tf:
+            print("\t-", c.printSimple())
+
+        print("\nOutsiders:")
+        for c in self.os:
+            print("\t-", c.printSimple())
+
+        print("\nMinions:")
+        for c in self.mn:
+            print("\t-", c.printSimple())
+
+        text = "\nDemon"
+        if len(self.dm) != 1:
+            text += "s"
+        
+        print(text + ":")
+        for c in self.mn:
+            print("\t-", c.printSimple())
+        
+        print("\n")
+
+    def printFull(self):
+        print("\n---TOWNSFOLK---")
+        for c in self.tf:
+            print("\n" + str(c))
+
+        print("\n---OUTSIDERS---")
+        for c in self.os:
+            print("\n" + str(c))
+
+        print("\n---MINIONS---")
+        for c in self.mn:
+            print("\n" + str(c))
+
+        text = "DEMON"
+        if len(self.dm) != 1:
+            text += "S"
+
+        print("\n---" + text + "---")
+        for c in self.dm:
+            print("\n" + str(c))
+
+        print("\n")
