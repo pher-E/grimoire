@@ -31,6 +31,11 @@ class Player:
     def rmReminder(self, i):
         self.reminders.pop(i)
 
+    def printReminders(self):
+        for i in range(len(self.reminders)):
+            print("\t" + str(i + 1), "-", self.reminders[i])
+        print()
+
 
 class Character:
     def __init__(self, c):
@@ -73,6 +78,21 @@ class Script:
             else:
                 self.dm.append(c)
 
+    def getChar(self, i):
+        if i < len(self.tf):
+            return self.tf[i]
+        
+        i -= len(self.tf)
+        if i < len(self.os):
+            return self.os[i]
+        
+        i -= len(self.os)
+        if i < len(self.mn):
+            return self.mn[i]
+        
+        i -= len(self.mn)
+        return self.dm[i]
+    
     def printChars(self):
         print("\nTownsfolk:")
         i = 1

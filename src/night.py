@@ -1,4 +1,4 @@
 
 
-def night(firstNight):
+def night(firstNight, party):
     return
