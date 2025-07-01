@@ -1,0 +1,4 @@
+
+
+def night(firstNight):
+    return

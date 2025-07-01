@@ -16,8 +16,14 @@ class Player:
     def changeName(self, name):
         self.name = name
 
+    def getChar(self):
+        return self.c
+
     def changeChar(self, c):
         self.c = c
+
+    def getReminders(self):
+        return self.reminders
 
     def addReminder(self, text):
         self.reminders.append(text)
@@ -34,12 +40,14 @@ class Character:
         self.firstNight = c["firstNight"]
         self.firstNightReminder = c["firstNightReminder"]
         self.otherNight = c["otherNight"]
-        self.reminders = c["reminders"]
         self.setup = c["setup"]
         self.ability = c["ability"]
 
     def __str__(self):
         return f"{self.name}\n\t{self.ability}"
+    
+    def needsSetup(self):
+        return self.setup
     
     def printSimple(self):
         return f"{self.name}"
@@ -51,8 +59,11 @@ class Character:
 class Script:
     def __init__(self, chars):
         self.tf, self.os, self.mn, self.dm = [], [], [], []
+        self.size = 0
         for char in chars:
             c = Character(char)
+            size += 1
+
             if c.team == "townsfolk":
                 self.tf.append(c)
             elif c.team == "outsider":
@@ -64,26 +75,30 @@ class Script:
 
     def printChars(self):
         print("\nTownsfolk:")
+        i = 1
         for c in self.tf:
-            print("\t-", c.printSimple())
+            print("\t" + str(i), "-", c.printSimple())
+            i += 1
 
         print("\nOutsiders:")
         for c in self.os:
-            print("\t-", c.printSimple())
+            print("\t" + str(i), "-", c.printSimple())
+            i += 1
 
         print("\nMinions:")
         for c in self.mn:
-            print("\t-", c.printSimple())
+            print("\t" + str(i), "-", c.printSimple())
+            i += 1
 
         text = "\nDemon"
         if len(self.dm) != 1:
             text += "s"
-        
         print(text + ":")
         for c in self.mn:
-            print("\t-", c.printSimple())
+            print("\t" + str(i), "-", c.printSimple())
+            i += 1
         
-        print("\n")
+        print()
 
     def printFull(self):
         print("\n---TOWNSFOLK---")
