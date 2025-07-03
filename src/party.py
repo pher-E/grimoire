@@ -30,6 +30,8 @@ class Party:
             self.players.append(Player(names[i], self.IP[i]))
 
     def rollChars(self):
+        self.IP = [] # reset IP
+
         # error check
         if len(self.script.dm) == 0 or len(self.script.mn) < self.mnNum or len(self.script.os) < self.osNum or len(self.script.tf) < self.tfNum:
             # insufficient script -> self.tfIP = self.osIP = self.mnIP = self.dmIP = []
@@ -43,6 +45,8 @@ class Party:
                 mnInd.append(i)
             if i < len(self.script.tf):
                 tfInd.append(i)
+
+        random.seed()
 
         random.shuffle(tfInd)
         random.shuffle(osInd)
@@ -60,6 +64,10 @@ class Party:
         self.IP.append(self.script.dm[dmInd])
         random.shuffle(self.IP)
 
+        # update players
+        for i in range(len(self.players)):
+            self.players[i].changeChar(self.IP[i])
+
     def listPlayers(self):
         for i in range(len(self.players)):
             print("\t" + str(i + 1), "-", str(self.players[i]))
@@ -74,21 +82,20 @@ class Party:
         print()
     
     def getPlayer(self, i):
-        return self.players[i].copy()
+        return self.players[i]
     
     def showSimpleScript(self):
         self.script.printChars()
 
     def showScript(self):
         self.script.printFull()
+    
+    def showDefIP(self):
+        print(f"{self.tfNum} Townsfolk, {self.osNum} Outsider(s), {self.mnNum} Minion(s), and {self.dmNum} Demon")
 
     def showIP(self):
         for c in self.IP:
             print(str(c))
-        print()
-    
-    def showDefIP(self):
-        print(f"{self.tfNum} Townsfolk, {self.osNum} Outsider(s), {self.mnNum} Minion(s), and {self.dmNum} Demon")
 
     def showSetup(self):
         noSetup = True

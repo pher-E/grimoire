@@ -3,9 +3,10 @@ class Player:
         self.name = name
         self.c = c
         self.reminders = []
+        self.alive = True
 
     def __str__(self):
-        return f"{self.name} ({self.c.printSimple()})"
+        return f"{self.name} ({self.c.printSimple()})" + ("" if self.alive else " X")
     
     def printSimple(self):
         return f"{self.name}"
@@ -30,6 +31,9 @@ class Player:
 
     def rmReminder(self, i):
         self.reminders.pop(i)
+
+    def changeLife(self):
+        self.alive = not self.alive
 
     def printReminders(self):
         for i in range(len(self.reminders)):
@@ -67,7 +71,7 @@ class Script:
         self.size = 0
         for char in chars:
             c = Character(char)
-            size += 1
+            self.size += 1
 
             if c.team == "townsfolk":
                 self.tf.append(c)
