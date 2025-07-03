@@ -49,6 +49,7 @@ class Character:
         self.firstNight = c["firstNight"]
         self.firstNightReminder = c["firstNightReminder"]
         self.otherNight = c["otherNight"]
+        self.otherNightReminder = c["otherNightReminder"]
         self.setup = c["setup"]
         self.ability = c["ability"]
 

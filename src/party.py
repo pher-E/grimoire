@@ -105,3 +105,56 @@ class Party:
                     noSetup = False
                     print("This story requires a few more steps:\n")
                 print(str(c))
+
+    def showFirstNight(self):
+        def sorter(c):
+            return c.firstNight
+        chars = self.IP.copy()
+        chars.sort(key=sorter)
+
+        while chars[0].firstNight == 0:
+            chars.pop(0)
+
+        count = 0
+        for c in chars:
+            if c.firstNight > 6:
+                break
+            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+            count += 1
+
+        print("Minion Info - Wake the Minions so they see each other, and show them their demon.\n")
+
+        while count > 0:
+            chars.pop(0)
+            count -= 1
+
+        for c in chars:
+            if c.firstNight > 9:
+                break
+            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+            count += 1
+
+        print("Demon Info & Bluffs - Wake the Demon and show them their Minions. Then show them 3 good characters that are not in play.\n")
+
+        while count > 0:
+            chars.pop(0)
+            count -= 1
+
+        for c in chars:
+            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+
+        print()
+
+    def showOtherNight(self):
+        def sorter(c):
+            return c.otherNight
+        chars = self.IP.copy()
+        chars.sort(key=sorter)
+
+        while chars[0].otherNight == 0:
+            chars.pop(0)
+
+        for c in chars:
+            print(c.printSimple(), "-", c.otherNightReminder + "\n")
+
+        print()

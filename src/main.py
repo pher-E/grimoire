@@ -1,14 +1,12 @@
 from time import sleep
-from helpers import clear_screen
+from helpers import clear_screen, acc_player
 from boot import boot
-from acc_player import acc_player
-from night import night
 
 def main():
     clear_screen()
     sleep(.7)
 
-    print("\nBlood on the Clocktower Grimoire (v0.0.4)\n")
+    print("\nBlood on the Clocktower Grimoire (v0.1.0)\n")
     sleep(1)
 
     party = boot()
@@ -23,7 +21,8 @@ def main():
         print("\t3. See in-play characters")
         print("\t4. Access a player")
         print("\t5. Reroll all characters")
-        print("\t0. Start the night")
+        print("\t9. See first night")
+        print("\t0. See other nights")
         print("\n\t-1. Exit the grimoire")
 
         sleep(.2)
@@ -37,6 +36,9 @@ def main():
             break
         elif text.casefold() == "back":
             clear_screen()
+            continue
+        elif text == "test":
+            party.showIP()
             continue
 
         print()
@@ -80,9 +82,10 @@ def main():
                     continue
                 party.rollChars()
                 print("New characters have been chosen.\n")
+            elif num == 9:
+                party.showFirstNight()
             elif num == 0:
-                night(firstNight)
-                firstNight = False
+                party.showOtherNight()
             else:
                 print("\nPlease input a value in range.\n")
         else:
