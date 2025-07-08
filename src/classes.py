@@ -1,12 +1,14 @@
 class Player:
-    def __init__(self, name, c):
+    def __init__(self, name):
         self.name = name
-        self.c = c
         self.reminders = []
         self.alive = True
 
     def __str__(self):
-        return f"{self.name} ({self.c.printSimple()})" + ("" if self.alive else " X")
+        if self.alive:
+            return f"{self.name}"
+        
+        return f"X*{self.name}*X"
     
     def printSimple(self):
         return f"{self.name}"
@@ -16,12 +18,6 @@ class Player:
 
     def changeName(self, name):
         self.name = name
-
-    def getChar(self):
-        return self.c
-
-    def changeChar(self, c):
-        self.c = c
 
     def getReminders(self):
         return self.reminders
@@ -59,8 +55,8 @@ class Character:
     def needsSetup(self):
         return self.setup
     
-    def printSimple(self):
-        return f"{self.name}"
+    def getName(self):
+        return self.name
 
     def printFull(self):
         return f"{self.name} ({self.team})\n\t{self.ability}"

@@ -64,25 +64,25 @@ class Party:
         self.IP.append(self.script.dm[dmInd])
         random.shuffle(self.IP)
 
-        # update players
-        for i in range(len(self.players)):
-            self.players[i].changeChar(self.IP[i])
-
     def listPlayers(self):
         for i in range(len(self.players)):
-            print("\t" + str(i + 1), "-", str(self.players[i]))
-            if len(self.players[i].getReminders()) != 0:
-                for s in self.players[i].getReminders():
-                    print("\t\t~", s)
+            print("\t" + str(i + 1), "-", str(self.players[i]), f"({self.IP[i].getName()})")
+
+        for s in self.players[i].getReminders():
+            print("\t\t~", s)
         print()
 
     def listPlayersHidden(self):
         for i in range(len(self.players)):
-            print("\t" + str(i + 1), "-", self.players[i].getName())
+            print("\t" + str(i + 1), "-", str(self.players[i]))
         print()
     
     def getPlayer(self, i):
         return self.players[i]
+    
+    def changePC(self, player, c):
+        i = self.players.index(player)
+        self.IP[i] = c
     
     def showSimpleScript(self):
         self.script.printChars()
@@ -95,7 +95,13 @@ class Party:
 
     def showIP(self):
         for c in self.IP:
-            print(str(c))
+            print(c.printFull())
+
+    def swapChars(self, i1, i2):
+        if i1 != i2:
+            tmp = self.IP[i1]
+            self.IP[i1] = self.IP[i2]
+            self.IP[i2] = tmp
 
     def showSetup(self):
         noSetup = True

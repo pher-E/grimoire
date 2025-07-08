@@ -1,32 +1,33 @@
 from time import sleep
-from helpers import clear_screen, acc_player
+from helpers import clear_screen
+from acc_player import acc_player
 from boot import boot
 
 def main():
     clear_screen()
     sleep(.7)
 
-    print("\nBlood on the Clocktower Grimoire (v0.1.0)\n")
+    print("\nBlood on the Clocktower Grimoire (v0.1.1)\n")
     sleep(1)
 
     party = boot()
     if party == 1:
-        return
+        return 1
 
-    firstNight = True
     while True:
         print("Enter one of the following commands to prepare for the night:")
         print("\t1. See Town Square")
         print("\t2. See script")
         print("\t3. See in-play characters")
         print("\t4. Access a player")
-        print("\t5. Reroll all characters")
+        print("\t5. Swap player characters")
+        print("\t6. Reroll all characters")
         print("\t9. See first night")
         print("\t0. See other nights")
         print("\n\t-1. Exit the grimoire")
 
         sleep(.2)
-        print("\t\t(Enter 'back' to return to this menu anytime)\n")
+        print("\t\t(Enter '0' to return to this menu anytime)\n")
         sleep(.2)
         text = input(" > ")
 
@@ -58,20 +59,39 @@ def main():
 
                 player = input(" > ")
 
-                if player.casefold() == "back":
-                    continue
-
                 while not player.isnumeric():
                     player = input("Please enter a valid index: ")
 
                 player = int(player)
                 if player < 1 or player > len(party.players):
-                    player = input("\nPlease input a value in range.\n")
+                    if not player == 0:
+                        print("\nPlease input a value in range.\n")
                     continue
 
                 player = party.getPlayer(player - 1)  
                 player = acc_player(party, player)
             elif num == 5:
+                party.listPlayersHidden()
+                p1 = input("First player: ")
+                while not p1.isnumeric():
+                    p1 = input("Please enter a valid index: ")
+
+                if p1 < 1 or p1 > len(party.players):
+                    if not p1 == 0:
+                        print("\nPlease input a value in range.\n")
+                    continue
+
+                p2 = input("Second player: ")
+                while not p2.isnumeric():
+                    p2 = input("Please enter a valid index: ")
+
+                if p2 < 1 or p2 > len(party.players):
+                    if not p2 == 0:
+                        print("\nPlease input a value in range.\n")
+                    continue
+
+
+            elif num == 6:
                 yn = input("Are you sure (y/n)?\n > ")
                 while yn != "y" and yn != "n":
                     if yn.casefold() == "back":
