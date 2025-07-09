@@ -98,17 +98,17 @@ class Script:
         print("\nTownsfolk:")
         i = 1
         for c in self.tf:
-            print("\t" + str(i), "-", c.printSimple())
+            print("\t" + str(i), "-", c.getName())
             i += 1
 
         print("\nOutsiders:")
         for c in self.os:
-            print("\t" + str(i), "-", c.printSimple())
+            print("\t" + str(i), "-", c.getName())
             i += 1
 
         print("\nMinions:")
         for c in self.mn:
-            print("\t" + str(i), "-", c.printSimple())
+            print("\t" + str(i), "-", c.getName())
             i += 1
 
         text = "\nDemon"
@@ -116,7 +116,7 @@ class Script:
             text += "s"
         print(text + ":")
         for c in self.mn:
-            print("\t" + str(i), "-", c.printSimple())
+            print("\t" + str(i), "-", c.getName())
             i += 1
         
         print()

@@ -27,7 +27,7 @@ class Party:
 
         self.rollChars()
         for i in range(len(names)):
-            self.players.append(Player(names[i], self.IP[i]))
+            self.players.append(Player(names[i]))
 
     def rollChars(self):
         self.IP = [] # reset IP
@@ -125,7 +125,7 @@ class Party:
         for c in chars:
             if c.firstNight > 6:
                 break
-            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+            print(c.getName(), "-", c.firstNightReminder + "\n")
             count += 1
 
         print("Minion Info - Wake the Minions so they see each other, and show them their demon.\n")
@@ -137,7 +137,7 @@ class Party:
         for c in chars:
             if c.firstNight > 9:
                 break
-            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+            print(c.getName(), "-", c.firstNightReminder + "\n")
             count += 1
 
         print("Demon Info & Bluffs - Wake the Demon and show them their Minions. Then show them 3 good characters that are not in play.\n")
@@ -147,7 +147,7 @@ class Party:
             count -= 1
 
         for c in chars:
-            print(c.printSimple(), "-", c.firstNightReminder + "\n")
+            print(c.getName(), "-", c.firstNightReminder + "\n")
 
         print()
 
@@ -161,6 +161,6 @@ class Party:
             chars.pop(0)
 
         for c in chars:
-            print(c.printSimple(), "-", c.otherNightReminder + "\n")
+            print(c.getName(), "-", c.otherNightReminder + "\n")
 
         print()
