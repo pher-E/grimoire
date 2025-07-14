@@ -67,9 +67,8 @@ class Party:
     def listPlayers(self):
         for i in range(len(self.players)):
             print("\t" + str(i + 1), "-", str(self.players[i]), f"({self.IP[i].getName()})")
-
-        for s in self.players[i].getReminders():
-            print("\t\t~", s)
+            for s in self.players[i].getReminders():
+                print("\t\t~", s)
         print()
 
     def listPlayersHidden(self):

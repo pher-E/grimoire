@@ -7,7 +7,7 @@ def main():
     clear_screen()
     sleep(.7)
 
-    print("\nBlood on the Clocktower Grimoire (v0.1.1)\n")
+    print("\nBlood on the Clocktower Grimoire (v0.1.3)\n")
     sleep(1)
 
     party = boot()

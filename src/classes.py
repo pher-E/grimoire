@@ -8,7 +8,7 @@ class Player:
         if self.alive:
             return f"{self.name}"
         
-        return f"X*{self.name}*X"
+        return f"+{self.name}+"
     
     def printSimple(self):
         return f"{self.name}"
@@ -115,7 +115,7 @@ class Script:
         if len(self.dm) != 1:
             text += "s"
         print(text + ":")
-        for c in self.mn:
+        for c in self.dm:
             print("\t" + str(i), "-", c.getName())
             i += 1
         
