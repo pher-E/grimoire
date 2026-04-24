@@ -28,6 +28,7 @@ def boot():
     chars = char_convert(chars)
     if (len(chars) == 0):
         error_out("At least one invalid character (listed above) was found.")
+        return 1
 
     sleep(0.5)
 
